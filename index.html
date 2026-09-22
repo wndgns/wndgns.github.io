@@ -1,91 +1,768 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>wndgns Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="wndgns - Cyber Security, DFIR, Infrastructure Portfolio"
+  />
+
+  <title>wndgns | Security Portfolio</title>
 
   <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #111821;
+      --panel-2: #0f151d;
+      --text: #e8eef5;
+      --muted: #93a4b8;
+      --line: #263241;
+      --accent: #62a8ff;
+      --accent-2: #7bdcb5;
+      --max: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
+      margin: 0;
+      font-family:
+        Inter,
+        Pretendard,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 20% 0%,
+          rgba(98, 168, 255, 0.08),
+          transparent 28rem
+        ),
+        var(--bg);
+
+      color: var(--text);
       line-height: 1.7;
-      background: #0d1117;
-      color: #e6edf3;
-    }
-
-    h1 {
-      font-size: 48px;
-      margin-bottom: 5px;
-    }
-
-    h2 {
-      margin-top: 50px;
-      border-bottom: 1px solid #30363d;
-      padding-bottom: 10px;
-    }
-
-    .subtitle {
-      color: #8b949e;
-      font-size: 20px;
-    }
-
-    .project {
-      background: #161b22;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 10px;
-      border: 1px solid #30363d;
     }
 
     a {
-      color: #58a6ff;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* NAV */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+
+      backdrop-filter: blur(12px);
+
+      background: rgba(11, 15, 20, 0.82);
+
+      border-bottom:
+        1px solid rgba(38, 50, 65, 0.75);
+    }
+
+    .nav-inner {
+      min-height: 64px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* HERO */
+
+    header {
+      padding: 96px 0 72px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+
+      color: var(--accent-2);
+
+      font-weight: 700;
+
+      font-size: 14px;
+
+      letter-spacing: 0.08em;
+
+      text-transform: uppercase;
+
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+
+      font-size:
+        clamp(
+          46px,
+          9vw,
+          84px
+        );
+
+      line-height: 1;
+
+      letter-spacing: -0.045em;
+    }
+
+    .hero-subtitle {
+      margin: 22px 0 0;
+
+      color: var(--muted);
+
+      font-size:
+        clamp(
+          18px,
+          3vw,
+          24px
+        );
+
+      max-width: 760px;
+    }
+
+    .hero-copy {
+      margin-top: 20px;
+
+      max-width: 760px;
+
+      color: #c6d1dd;
+    }
+
+    .hero-actions {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 30px;
+    }
+
+    /* BUTTON */
+
+    .btn {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      min-height: 44px;
+
+      padding: 0 16px;
+
+      border-radius: 10px;
+
+      border: 1px solid var(--line);
+
+      font-weight: 700;
+
+      font-size: 14px;
+
+      background: var(--panel);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      background: var(--accent);
+
+      color: #07111f;
+
+      border-color: transparent;
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 34px 0 58px;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+
+      font-size: 30px;
+
+      letter-spacing: -0.025em;
+    }
+
+    .section-desc {
+      margin: 0 0 26px;
+
+      color: var(--muted);
+    }
+
+    /* GRID */
+
+    .grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
+
+      gap: 18px;
+    }
+
+    /* CARD */
+
+    .card {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(17, 24, 33, 0.98),
+          rgba(15, 21, 29, 0.98)
+        );
+
+      border: 1px solid var(--line);
+
+      border-radius: 16px;
+
+      padding: 24px;
+
+      transition:
+        transform 0.18s ease,
+        border-color 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+
+      border-color: #3a4c61;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+
+      font-size: 21px;
+    }
+
+    .card p {
+      margin: 0;
+
+      color: #c2ceda;
+    }
+
+    .meta {
+      margin-top: 16px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    /* TAG */
+
+    .tags {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: 18px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+
+      background: #0d141c;
+
+      color: #b9c7d6;
+
+      border-radius: 999px;
+
+      padding: 6px 10px;
+
+      font-size: 12px;
+    }
+
+    /* SKILLS */
+
+    .skills {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 10px 13px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 10px;
+
+      background: var(--panel);
+
+      color: #c9d4df;
+
+      font-size: 14px;
+    }
+
+    /* NOTE */
+
+    .note {
+      border-left:
+        3px solid var(--accent);
+
+      padding:
+        14px 18px;
+
+      background:
+        rgba(
+          98,
+          168,
+          255,
+          0.06
+        );
+
+      color: #cbd7e4;
+
+      border-radius:
+        0 10px 10px 0;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 20px;
+
+      padding:
+        36px 0 48px;
+
+      border-top:
+        1px solid var(--line);
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 760px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      header {
+        padding-top: 72px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <h1>wndgns</h1>
-  <p class="subtitle">Cyber Security / DFIR / Infrastructure</p>
+  <!-- NAV -->
+  <nav>
+    <div class="wrap nav-inner">
 
-  <h2>About Me</h2>
-  <p>
-    보안, 인프라, 디지털 포렌식을 공부하며
-    프로젝트와 실습 내용을 기록하고 있습니다.
-  </p>
+      <a class="brand" href="#top">
+        wndgns
+      </a>
 
-  <h2>Projects</h2>
+      <div class="nav-links">
 
-  <div class="project">
-    <h3>Taxpresso Infrastructure</h3>
-    <p>
-      VMware 기반 다중 VM 환경에서 WireGuard 네트워크,
-      OpenSearch 로그 수집 및 백업 시스템을 구축한 프로젝트입니다.
-    </p>
-  </div>
+        <a href="#about">
+          About
+        </a>
 
-  <div class="project">
-    <h3>DFIR Training</h3>
-    <p>
-      Windows Registry, Disk Forensics, Memory Forensics,
-      Network Forensics 분석 실습을 진행했습니다.
-    </p>
-  </div>
+        <a href="#projects">
+          Projects
+        </a>
 
-  <h2>Skills</h2>
-  <p>
-    Linux · Windows · VMware · WireGuard · OPNsense ·
-    OpenSearch · Logstash · Filebeat · Wireshark ·
-    FTK Imager · Autopsy · Volatility
-  </p>
+        <a href="#skills">
+          Skills
+        </a>
 
-  <h2>Contact</h2>
-  <p>
-    <a href="https://github.com/wndgns">GitHub</a>
-  </p>
+        <a href="#contact">
+          Contact
+        </a>
+
+      </div>
+
+    </div>
+  </nav>
+
+
+  <main id="top">
+
+    <!-- HERO -->
+    <header class="wrap">
+
+      <span class="eyebrow">
+        Security Portfolio
+      </span>
+
+      <h1>
+        wndgns
+      </h1>
+
+      <p class="hero-subtitle">
+        Cyber Security · DFIR · Infrastructure
+      </p>
+
+      <p class="hero-copy">
+
+        보안 인프라 구축과 디지털 포렌식 실습을
+        중심으로 프로젝트를 진행하고 있습니다.
+
+        구축 과정, 분석 방법, 트러블슈팅 경험을
+        기록하고 재현 가능한 형태로 정리하는 것을
+        중요하게 생각합니다.
+
+      </p>
+
+      <div class="hero-actions">
+
+        <a
+          class="btn primary"
+          href="#projects"
+        >
+          프로젝트 보기
+        </a>
+
+        <a
+          class="btn"
+          href="https://github.com/wndgns"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
+
+      </div>
+
+    </header>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+      <div class="wrap">
+
+        <h2 class="section-title">
+          About Me
+        </h2>
+
+        <p class="section-desc">
+          현재 집중하고 있는 분야입니다.
+        </p>
+
+        <div class="note">
+
+          Windows/Linux 환경의 포렌식 분석,
+          로그 수집·검색,
+          가상화 기반 인프라 운영,
+          네트워크 분석을 학습하고
+          프로젝트에 적용하고 있습니다.
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section id="projects">
+
+      <div class="wrap">
+
+        <h2 class="section-title">
+          Projects
+        </h2>
+
+        <p class="section-desc">
+          실제 구축·분석 경험을 중심으로 정리했습니다.
+        </p>
+
+
+        <div class="grid">
+
+          <!-- PROJECT 1 -->
+          <article class="card">
+
+            <h3>
+              Taxpresso Infrastructure
+            </h3>
+
+            <p>
+
+              VMware 기반 다중 VM 환경에서
+              로그 중앙화와 백업 흐름을 구성하고,
+
+              OpenSearch 기반 검색·대시보드 환경과
+              백업 감사 로그를 구축했습니다.
+
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">
+                VMware
+              </span>
+
+              <span class="tag">
+                WireGuard
+              </span>
+
+              <span class="tag">
+                OPNsense
+              </span>
+
+              <span class="tag">
+                OpenSearch
+              </span>
+
+              <span class="tag">
+                Logstash
+              </span>
+
+              <span class="tag">
+                Filebeat
+              </span>
+
+            </div>
+
+            <div class="meta">
+
+              Focus:
+              Logging · Monitoring · Backup · Network
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 2 -->
+          <article class="card">
+
+            <h3>
+              DFIR Training
+            </h3>
+
+            <p>
+
+              디스크 이미지,
+              Windows 레지스트리,
+              메모리,
+              PCAP 등 다양한 증거를 기반으로
+
+              침해 흔적을 분석하고
+              타임라인을 재구성하는
+              실습을 진행했습니다.
+
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">
+                FTK Imager
+              </span>
+
+              <span class="tag">
+                Autopsy
+              </span>
+
+              <span class="tag">
+                Volatility
+              </span>
+
+              <span class="tag">
+                Wireshark
+              </span>
+
+              <span class="tag">
+                Registry
+              </span>
+
+              <span class="tag">
+                NTFS
+              </span>
+
+            </div>
+
+            <div class="meta">
+
+              Focus:
+              Disk · Memory · Registry · Network Forensics
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+    <section id="skills">
+
+      <div class="wrap">
+
+        <h2 class="section-title">
+          Skills
+        </h2>
+
+        <p class="section-desc">
+          프로젝트와 실습에서 사용한 기술 및 도구입니다.
+        </p>
+
+
+        <div class="skills">
+
+          <span class="skill">
+            Linux
+          </span>
+
+          <span class="skill">
+            Windows
+          </span>
+
+          <span class="skill">
+            VMware
+          </span>
+
+          <span class="skill">
+            WireGuard
+          </span>
+
+          <span class="skill">
+            OPNsense
+          </span>
+
+          <span class="skill">
+            OpenSearch
+          </span>
+
+          <span class="skill">
+            Logstash
+          </span>
+
+          <span class="skill">
+            Filebeat
+          </span>
+
+          <span class="skill">
+            MariaDB
+          </span>
+
+          <span class="skill">
+            Wireshark
+          </span>
+
+          <span class="skill">
+            FTK Imager
+          </span>
+
+          <span class="skill">
+            Autopsy
+          </span>
+
+          <span class="skill">
+            Volatility
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+      <div class="wrap">
+
+        <h2 class="section-title">
+          Contact
+        </h2>
+
+        <p class="section-desc">
+          프로젝트 코드는 GitHub에서 확인할 수 있습니다.
+        </p>
+
+        <a
+          class="btn"
+          href="https://github.com/wndgns"
+          target="_blank"
+          rel="noreferrer"
+        >
+          github.com/wndgns
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="wrap">
+
+      © 2026 wndgns
+      · Built with GitHub Pages
+
+    </div>
+
+  </footer>
 
 </body>
 </html>
